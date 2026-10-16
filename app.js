@@ -163,7 +163,7 @@
 
   function renderEmpty(message) {
     clear(els.main);
-    var card = node("section", "card empty");
+    var card = node("section", "dx-card empty");
     card.appendChild(node("span", "big", "🗺️"));
     card.appendChild(node("p", "", message));
     els.main.appendChild(card);
@@ -171,7 +171,7 @@
 
   function renderHero() {
     var goal = doc.goal || {};
-    var hero = node("section", "hero");
+    var hero = node("section", "dx-card hero");
     hero.setAttribute("aria-label", "Goal");
     hero.appendChild(node("h2", "", goal.text ? String(goal.text) : "Roadmap"));
     if (goal.targetDate) {
@@ -216,7 +216,7 @@
     var status = statusOf(m);
     var item = node("li", "ms " + status);
     item.appendChild(node("span", "dot"));
-    var card = node("article", "card ms-card");
+    var card = node("article", "dx-card ms-card");
     var top = node("div", "ms-top");
     var when = node("time", "when", m.when ? String(m.when) : "");
     if (m.when) when.setAttribute("datetime", String(m.when));
@@ -262,10 +262,10 @@
 
   function renderTimeline() {
     var wrap = document.createDocumentFragment();
-    wrap.appendChild(node("h2", "section-title", "Milestones"));
+    wrap.appendChild(node("h2", "section-title dx-on-bg", "Milestones"));
     var list = doc.milestones || [];
     if (!list.length) {
-      var empty = node("section", "card");
+      var empty = node("section", "dx-card");
       empty.appendChild(node("p", "muted", "No milestones yet."));
       wrap.appendChild(empty);
       return wrap;
@@ -297,8 +297,8 @@
 
   function renderCheckins() {
     var wrap = document.createDocumentFragment();
-    wrap.appendChild(node("h2", "section-title", "Check-ins"));
-    var card = node("section", "card");
+    wrap.appendChild(node("h2", "section-title dx-on-bg", "Check-ins"));
+    var card = node("section", "dx-card");
     var milestone = currentMilestone();
     var latest = latestCheckin();
     var value = latest && isFinite(Number(latest.netWorth)) ? Number(latest.netWorth) : 0;
@@ -315,7 +315,7 @@
     form.appendChild(field("netWorth", "Net worth", "number", "", true));
     form.appendChild(field("investedPerMonth", "Invested / month", "number", "", false));
     form.appendChild(field("sideIncome", "Side income", "number", "", false));
-    var add = node("button", "add-btn", "Add check-in");
+    var add = node("button", "dx-btn add-btn", "Add check-in");
     add.type = "submit";
     form.appendChild(add);
     card.appendChild(form);
@@ -353,8 +353,8 @@
 
   function renderNotes() {
     var wrap = document.createDocumentFragment();
-    wrap.appendChild(node("h2", "section-title", "Notes"));
-    var card = node("section", "card");
+    wrap.appendChild(node("h2", "section-title dx-on-bg", "Notes"));
+    var card = node("section", "dx-card");
     var notes = doc.notes || [];
     if (!notes.length) {
       card.appendChild(node("p", "muted", "No notes."));
